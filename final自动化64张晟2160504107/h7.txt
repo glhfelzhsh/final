@@ -1,0 +1,155 @@
+% img10=imread('test1.bmp');
+% img11=edge(img10,'sobel');
+% img12=edge(img10,'roberts');
+% img13=edge(img10,'canny');
+% subplot(2,2,1);imshow(img10);
+% title('Ô­Í¼Ïñ');
+% subplot(2,2,2);imshow(img11);
+% title('sobel±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,3);imshow(img12);
+% title('Roberts±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,4);imshow(img13);
+% title('canny±ßÔµ¼ì²âÍ¼Ïñ');
+% saveas(gcf,'pic1.jpg');
+% 
+% img20=imread('test2.png');
+% img21=edge(img20,'sobel');
+% img22=edge(img20,'roberts');
+% img23=edge(img20,'canny');
+% subplot(2,2,1);imshow(img20);
+% title('Ô­Í¼Ïñ');
+% subplot(2,2,2);imshow(img21);
+% title('sobel±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,3);imshow(img22);
+% title('Roberts±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,4);imshow(img23);
+% title('canny±ßÔµ¼ì²âÍ¼Ïñ');
+% saveas(gcf,'pic2.jpg');
+% 
+% 
+% img30=imread('test3.jpg');
+% img31=edge(img30,'sobel');
+% img32=edge(img30,'roberts');
+% img33=edge(img30,'canny');
+% subplot(2,2,1);imshow(img30);
+% title('Ô­Í¼Ïñ');
+% subplot(2,2,2);imshow(img31);
+% title('sobel±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,3);imshow(img32);
+% title('Roberts±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,4);imshow(img33);
+% title('canny±ßÔµ¼ì²âÍ¼Ïñ');
+% saveas(gcf,'pic3.jpg');
+% 
+% 
+% img40=imread('test4.bmp');
+% img41=edge(img40,'sobel');
+% img42=edge(img40,'roberts');
+% img43=edge(img40,'canny');
+% subplot(2,2,1);imshow(img40);
+% title('Ô­Í¼Ïñ');
+% subplot(2,2,2);imshow(img41);
+% title('sobel±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,3);imshow(img42);
+% title('Roberts±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,4);imshow(img43);
+% title('canny±ßÔµ¼ì²âÍ¼Ïñ');
+% saveas(gcf,'pic4.jpg');
+% 
+% 
+% img50=imread('test5.png');
+% img51=edge(img50,'sobel');
+% img52=edge(img50,'roberts');
+% img53=edge(img50,'canny');
+% subplot(2,2,1);imshow(img50);
+% title('Ô­Í¼Ïñ');
+% subplot(2,2,2);imshow(img51);
+% title('sobel±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,3);imshow(img52);
+% title('Roberts±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,4);imshow(img53);
+% title('canny±ßÔµ¼ì²âÍ¼Ïñ');
+% saveas(gcf,'pic5.jpg');
+% 
+% 
+% img60=imread('test6.jpg');
+% img61=edge(img60,'sobel');
+% img62=edge(img60,'roberts');
+% img63=edge(img60,'canny');
+% subplot(2,2,1);imshow(img60);
+% title('Ô­Í¼Ïñ');
+% subplot(2,2,2);imshow(img61);
+% title('sobel±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,3);imshow(img62);
+% title('Roberts±ßÔµ¼ì²âÍ¼Ïñ');
+% subplot(2,2,4);imshow(img63);
+% title('canny±ßÔµ¼ì²âÍ¼Ïñ');
+% saveas(gcf,'pic6.jpg');
+
+f=img22;
+figure(2)
+[H, theta, rho]= hough(f,'RhoResolution', 2,'ThetaResolution',4);  
+%imshow(theta,rho,H,[],'notruesize'),axis on,axis normal  
+%xlabel('\theta'),ylabel('rho');  
+  
+peak=houghpeaks(H,20);  
+hold on  
+  
+lines=houghlines(f,theta,rho,peak);  
+figure,imshow(f,[]),title('Hough Transform Detect Result'),hold on  
+for k=1:length(lines)  
+    xy=[lines(k).point1;lines(k).point2];  
+    plot(xy(:,1),xy(:,2),'LineWidth',4,'Color',[.9 .1 .1]);  
+end 
+saveas(gcf,'h1.jpg');
+
+f=img22;
+figure(2)
+[H, theta, rho]= hough(f,'RhoResolution', 0.5,'ThetaResolution',4);  
+%imshow(theta,rho,H,[],'notruesize'),axis on,axis normal  
+%xlabel('\theta'),ylabel('rho');  
+  
+peak=houghpeaks(H,20);  
+hold on  
+  
+lines=houghlines(f,theta,rho,peak);  
+figure,imshow(f,[]),title('Hough Transform Detect Result'),hold on  
+for k=1:length(lines)  
+    xy=[lines(k).point1;lines(k).point2];  
+    plot(xy(:,1),xy(:,2),'LineWidth',4,'Color',[.9 .1 .1]);  
+end 
+saveas(gcf,'h2.jpg');
+
+f=img22;
+figure(2)
+[H, theta, rho]= hough(f,'RhoResolution', 2,'ThetaResolution',0.5);  
+%imshow(theta,rho,H,[],'notruesize'),axis on,axis normal  
+%xlabel('\theta'),ylabel('rho');  
+  
+peak=houghpeaks(H,20);  
+hold on  
+  
+lines=houghlines(f,theta,rho,peak);  
+figure,imshow(f,[]),title('Hough Transform Detect Result'),hold on  
+for k=1:length(lines)  
+    xy=[lines(k).point1;lines(k).point2];  
+    plot(xy(:,1),xy(:,2),'LineWidth',4,'Color',[.9 .1 .1]);  
+end 
+saveas(gcf,'h3.jpg');
+
+f=img22;
+figure(2)
+[H, theta, rho]= hough(f,'RhoResolution', 0.5,'ThetaResolution',0.5);  
+%imshow(theta,rho,H,[],'notruesize'),axis on,axis normal  
+%xlabel('\theta'),ylabel('rho');  
+  
+peak=houghpeaks(H,20);  
+hold on  
+  
+lines=houghlines(f,theta,rho,peak);  
+figure,imshow(f,[]),title('Hough Transform Detect Result'),hold on  
+for k=1:length(lines)  
+    xy=[lines(k).point1;lines(k).point2];  
+    plot(xy(:,1),xy(:,2),'LineWidth',4,'Color',[.9 .1 .1]);  
+end 
+saveas(gcf,'h4.jpg');
